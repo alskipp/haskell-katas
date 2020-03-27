@@ -1,0 +1,36 @@
+cabal-version:         3.0
+
+name:                  katas
+version:               0.1.0.0
+author:                Al Skipp
+maintainer:            al_skipp@fastmail.fm
+copyright:             2020 Al Skipp
+category:              Katas
+build-type:            Simple
+
+common shared-properties
+  default-language:    Haskell2010
+  build-depends:       base == 4.*
+                     , containers
+  ghc-options:         -Wall
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wcompat
+                       -Wredundant-constraints
+                       -Wpartial-fields
+                       -Widentities
+
+executable katas
+  import:              shared-properties
+  main-is:             Main.hs
+  hs-source-dirs:      exe
+
+test-suite spec
+  import:              shared-properties
+  type:                exitcode-stdio-1.0
+  build-depends:       hspec == 2.*
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-tool-depends:  hspec-discover:hspec-discover
+  other-modules:       CapitalizeSpec
+                     , DescendingOrderSpec
