@@ -34,3 +34,4 @@ test-suite spec
   build-tool-depends:  hspec-discover:hspec-discover
   other-modules:       CapitalizeSpec
                      , DescendingOrderSpec
+                     , CombsSpec
