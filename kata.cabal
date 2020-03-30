@@ -35,3 +35,4 @@ test-suite spec
   other-modules:       CapitalizeSpec
                      , DescendingOrderSpec
                      , CombsSpec
+                     , FirstNonConsecutiveSpec
