@@ -36,3 +36,4 @@ test-suite spec
                      , DescendingOrderSpec
                      , CombsSpec
                      , FirstNonConsecutiveSpec
+                     , ScrambliesSpec
