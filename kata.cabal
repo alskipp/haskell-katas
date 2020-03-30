@@ -37,3 +37,4 @@ test-suite spec
                      , CombsSpec
                      , FirstNonConsecutiveSpec
                      , ScrambliesSpec
+                     , SumOfParts
