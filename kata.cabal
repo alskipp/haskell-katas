@@ -38,3 +38,4 @@ test-suite spec
                      , FirstNonConsecutiveSpec
                      , ScrambliesSpec
                      , SumOfParts
+                     , DirectionReduceSpec
