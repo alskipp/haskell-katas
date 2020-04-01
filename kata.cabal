@@ -39,3 +39,4 @@ test-suite spec
                      , ScrambliesSpec
                      , SumOfParts
                      , DirectionReduceSpec
+                     , ChurchBoolSpec
