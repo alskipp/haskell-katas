@@ -29,6 +29,7 @@ test-suite spec
   import:              shared-properties
   type:                exitcode-stdio-1.0
   build-depends:       hspec == 2.*
+                     , QuickCheck == 2.*
   hs-source-dirs:      test
   main-is:             Spec.hs
   build-tool-depends:  hspec-discover:hspec-discover
@@ -40,3 +41,5 @@ test-suite spec
                      , SumOfParts
                      , DirectionReduceSpec
                      , ChurchBoolSpec
+                     , BinaryTreeTraversalSpec
+                     , FoldMapSpec

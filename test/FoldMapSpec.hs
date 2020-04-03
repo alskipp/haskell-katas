@@ -1,0 +1,60 @@
+module FoldMapSpec where
+
+import Test.Hspec
+import Test.QuickCheck
+import Data.Foldable (foldMap, Foldable)
+import Data.Monoid()
+
+myToList :: Foldable t => t a -> [a]
+myToList = foldMap (\a -> [a])
+
+myMinimum :: (Ord a, Foldable t) => t a -> Maybe a
+myMinimum = getMin . foldMap (Min . Just)
+
+myFoldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+myFoldr f z t = getEndo (foldMap (Endo . f) t) z
+
+newtype Endo a = Endo { getEndo :: a -> a }
+
+instance Semigroup (Endo a) where
+  (Endo a) <> (Endo b) = Endo (a . b)
+
+instance Monoid (Endo a) where
+  mempty = Endo id
+
+newtype Min a = Min { getMin :: Maybe a } deriving (Show)
+
+instance (Ord a) => Semigroup (Min a) where
+  (Min (Just a)) <> (Min (Just b)) = Min $ Just (min a b)
+  (Min Nothing) <> r = r
+  l <> _ = l
+
+instance (Ord a) => Monoid (Min a) where
+  mempty = Min Nothing
+
+-- The foldMap function can be used to implement all kind of folds. Here is its signature :
+
+-- foldMap :: (Monoid m, Foldable t) => (a -> m) -> t a -> m
+-- In this exercise, you will have to implement the following functions, by increasing difficulty, in terms of foldMap :
+
+-- myToList : turn any Foldable into a list
+-- myMinimum : get the minimum value from any Foldable (hint : you will have to write a custom type, with a custom Monoid instance)
+-- myFoldr : implement foldr in terms of foldMap (hint : there is a suitable Monoid in Data.Monoid)
+-- There should be a single use of foldMap in each of the requested functions !
+
+spec :: Spec
+spec = do
+  describe "Testing Foldmap" $ do
+    it "properly implements myToList" $
+      property (\l -> myToList l == (l :: [Int]))
+    it "properly implements myMinimum" $
+      property $ \l -> let r = myMinimum (l :: [Int])
+                       in  if null l
+                              then r == Nothing
+                              else r == Just (minimum l)
+    it "properly implements foldr (and)" $
+      property (\l -> myFoldr (&&) True l == and (l :: [Bool]))
+    it "properly implements foldr (sum)" $
+      property (\l -> myFoldr (+) 0 l == sum (l :: [Int]))
+    it "properly implements foldr (++)" $
+      property (\l -> myFoldr (++) [] l == concat (l :: [[Int]]))
