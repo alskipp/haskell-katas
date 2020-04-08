@@ -43,3 +43,4 @@ test-suite spec
                      , ChurchBoolSpec
                      , BinaryTreeTraversalSpec
                      , FoldMapSpec
+                     , NextBiggerSpec
