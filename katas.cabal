@@ -44,3 +44,4 @@ test-suite spec
                      , BinaryTreeTraversalSpec
                      , FoldMapSpec
                      , NextBiggerSpec
+                     , BalancedParensSpec
