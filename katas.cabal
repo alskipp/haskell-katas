@@ -45,3 +45,4 @@ test-suite spec
                      , FoldMapSpec
                      , NextBiggerSpec
                      , BalancedParensSpec
+                     , BurrowsWheelerTransformSpec
