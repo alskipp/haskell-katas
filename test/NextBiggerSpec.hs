@@ -1,16 +1,23 @@
 module NextBiggerSpec where
 
-import Test.Hspec
+import Data.Foldable
+  ( foldMap,
+    foldl',
+  )
+import Data.Semigroup (First (..))
 import qualified Data.Sequence as S
-import Data.Sequence (Seq(..), (<|), (><))
-import Data.Foldable ( foldMap, foldl' )
-import Data.Semigroup ( First(..) )
+import Data.Sequence
+  ( (<|),
+    (><),
+    Seq (..),
+  )
+import Test.Hspec
 
 nextBigger :: Int -> Maybe Int
 nextBigger n = (fmap (fromDigits . getFirst) . foldMap f . S.reverse) $ zipped
   where
     zipped = let ds = toDigits n in S.zip (S.inits ds) (S.tails ds)
-    f (h,t) = (fmap . fmap) (h ><) $ maybeNext t
+    f (h, t) = (fmap . fmap) (h ><) $ maybeNext t
 
 maybeNext :: Seq Int -> Maybe (First (Seq Int))
 maybeNext Empty = Nothing
@@ -20,7 +27,8 @@ maybeNext (x :<| xs) = let s = S.sort xs in S.findIndexL (> x) s >>= f x s
 
 toDigits :: Int -> Seq Int
 toDigits = S.unfoldl f
-  where f n = if n == 0 then Nothing else Just $ quotRem n 10
+  where
+    f n = if n == 0 then Nothing else Just $ quotRem n 10
 
 fromDigits :: Seq Int -> Int
 fromDigits = foldl' ((+) . (* 10)) 0

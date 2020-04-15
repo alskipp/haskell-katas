@@ -1,14 +1,14 @@
 module CapitalizeSpec where
 
+import Data.Char (toUpper)
+import Data.List (foldl')
 import Test.Hspec
-import Data.List ( foldl' )
-import Data.Char ( toUpper )
 
 capitalize :: [Char] -> [String]
-capitalize = fmap pToList $ snd . foldl' f ((toUpper, id), ([],[]))
+capitalize = fmap pToList $ snd . foldl' f ((toUpper, id), ([], []))
   where
     f ((g, h), (xs, ys)) y = ((h, g), (xs ++ [g y], ys ++ [h y]))
-    pToList (x,y) = [x,y]
+    pToList (x, y) = [x, y]
 
 capitalize_v2 :: [Char] -> [String]
 capitalize_v2 xs = [zipWith ($) fs xs, zipWith ($) (tail fs) xs]
@@ -27,5 +27,7 @@ spec = do
       capitalize "codewars" `shouldBe` ["CoDeWaRs", "cOdEwArS"]
       capitalize "abracadabra" `shouldBe` ["AbRaCaDaBrA", "aBrAcAdAbRa"]
       capitalize "codewarriors" `shouldBe` ["CoDeWaRrIoRs", "cOdEwArRiOrS"]
-      capitalize "indexinglessons" `shouldBe` ["InDeXiNgLeSsOnS", "iNdExInGlEsSoNs"]
-      capitalize "codingisafunactivity" `shouldBe` ["CoDiNgIsAfUnAcTiViTy", "cOdInGiSaFuNaCtIvItY"]
+      capitalize "indexinglessons"
+        `shouldBe` ["InDeXiNgLeSsOnS", "iNdExInGlEsSoNs"]
+      capitalize "codingisafunactivity"
+        `shouldBe` ["CoDiNgIsAfUnAcTiViTy", "cOdInGiSaFuNaCtIvItY"]

@@ -19,7 +19,7 @@ postOrder :: Tree a -> [a]
 postOrder Nil = []
 postOrder (Node l root r) = postOrder l ++ postOrder r ++ [root]
 
-a,b,c,d :: Tree Int
+a , b, c, d :: Tree Int
 a = Node b 5 c
 b = Node Nil 10 Nil
 c = Node Nil 2 Nil

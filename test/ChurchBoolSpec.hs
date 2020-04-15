@@ -1,27 +1,38 @@
-{-# Language RankNTypes #-}
+{-# LANGUAGE RankNTypes #-}
 
 module ChurchBoolSpec where
 
 import Test.Hspec
-import Prelude hiding (not,and,or,(&&),(||),(==),(/=))
+import Prelude hiding
+  ( (&&),
+    (/=),
+    (==),
+    and,
+    not,
+    or,
+    (||),
+  )
 
 type Boolean = forall a. a -> a -> a -- this requires RankNTypes
 
-false,true :: Boolean
-false = \ t f -> f
-true  = \ t f -> t
+false, true :: Boolean
+false = \t f -> f
+true = \t f -> t
 
 not :: Boolean -> Boolean
-and,or,xor :: Boolean -> Boolean -> Boolean
+
+and, or, xor :: Boolean -> Boolean -> Boolean
 
 not = flip
-and = \ a b -> a b false
-or  = \ a b -> a true b
-xor = \ a b -> a (not b) b
+
+and = \a b -> a b false
+
+or = \a b -> a true b
+
+xor = \a b -> a (not b) b
 
 unchurch :: Boolean -> Bool
 unchurch bool = bool True False
-
 
 spec :: Spec
 spec = do

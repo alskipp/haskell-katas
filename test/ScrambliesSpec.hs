@@ -1,11 +1,13 @@
 module ScrambliesSpec where
 
+import Data.List
+  ( (\\),
+    null,
+  )
 import Test.Hspec
-import Data.List ( (\\), null )
 
 scramble :: [Char] -> [Char] -> Bool
 scramble s1 s2 = null $ s2 \\ s1
-
 
 -- Complete the function scramble(str1, str2) that returns true if a portion of str1 characters can be rearranged to match str2, otherwise returns false.
 

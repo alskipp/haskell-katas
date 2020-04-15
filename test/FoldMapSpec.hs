@@ -1,9 +1,12 @@
 module FoldMapSpec where
 
+import Data.Foldable
+  ( Foldable,
+    foldMap,
+  )
+import Data.Monoid ()
 import Test.Hspec
 import Test.QuickCheck
-import Data.Foldable (foldMap, Foldable)
-import Data.Monoid()
 
 myToList :: Foldable t => t a -> [a]
 myToList = foldMap (\a -> [a])
@@ -14,7 +17,7 @@ myMinimum = getMin . foldMap (Min . Just)
 myFoldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
 myFoldr f z t = getEndo (foldMap (Endo . f) t) z
 
-newtype Endo a = Endo { getEndo :: a -> a }
+newtype Endo a = Endo {getEndo :: a -> a}
 
 instance Semigroup (Endo a) where
   (Endo a) <> (Endo b) = Endo (a . b)
@@ -22,7 +25,7 @@ instance Semigroup (Endo a) where
 instance Monoid (Endo a) where
   mempty = Endo id
 
-newtype Min a = Min { getMin :: Maybe a } deriving (Show)
+newtype Min a = Min {getMin :: Maybe a} deriving (Show)
 
 instance (Ord a) => Semigroup (Min a) where
   (Min (Just a)) <> (Min (Just b)) = Min $ Just (min a b)
@@ -47,11 +50,9 @@ spec = do
   describe "Testing Foldmap" $ do
     it "properly implements myToList" $
       property (\l -> myToList l == (l :: [Int]))
-    it "properly implements myMinimum" $
-      property $ \l -> let r = myMinimum (l :: [Int])
-                       in  if null l
-                              then r == Nothing
-                              else r == Just (minimum l)
+    it "properly implements myMinimum" $ property $ \l ->
+      let r = myMinimum (l :: [Int])
+       in if null l then r == Nothing else r == Just (minimum l)
     it "properly implements foldr (and)" $
       property (\l -> myFoldr (&&) True l == and (l :: [Bool]))
     it "properly implements foldr (sum)" $
