@@ -49,3 +49,4 @@ test-suite spec
                      , BurrowsWheelerTransformSpec
                      , DecodeMorseSpec
                      , DecodeMorseBitsSpec
+                     , PascalsTriangleSpec
