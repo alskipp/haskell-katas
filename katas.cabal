@@ -48,3 +48,4 @@ test-suite spec
                      , BalancedParensSpec
                      , BurrowsWheelerTransformSpec
                      , DecodeMorseSpec
+                     , DecodeMorseBitsSpec
