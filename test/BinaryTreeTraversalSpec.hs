@@ -26,23 +26,22 @@ c = Node Nil 2 Nil
 d = Node (Node (Node Nil 1 Nil) 2 (Node Nil 3 (Node Nil 4 Nil))) 5 Nil
 
 spec :: Spec
-spec = do
-  describe "Basic tests" $ do
-    it "preOrder should work for trivial examples" $ do
-      preOrder (Nil :: Tree Int) `shouldBe` []
-      preOrder a `shouldBe` [5, 10, 2]
-      preOrder b `shouldBe` [10]
-      preOrder c `shouldBe` [2]
-      preOrder d `shouldBe` [5, 2, 1, 3, 4]
-    it "inOrder should work for trivial examples" $ do
-      inOrder (Nil :: Tree Int) `shouldBe` []
-      inOrder a `shouldBe` [10, 5, 2]
-      inOrder b `shouldBe` [10]
-      inOrder c `shouldBe` [2]
-      inOrder d `shouldBe` [1, 2, 3, 4, 5]
-    it "postOrder should work for trivial examples" $ do
-      postOrder (Nil :: Tree Int) `shouldBe` []
-      postOrder a `shouldBe` [10, 2, 5]
-      postOrder b `shouldBe` [10]
-      postOrder c `shouldBe` [2]
-      postOrder d `shouldBe` [1, 4, 3, 2, 5]
+spec = describe "Basic tests" $ do
+  it "preOrder should work for trivial examples" $ do
+    preOrder (Nil :: Tree Int) `shouldBe` []
+    preOrder a `shouldBe` [5, 10, 2]
+    preOrder b `shouldBe` [10]
+    preOrder c `shouldBe` [2]
+    preOrder d `shouldBe` [5, 2, 1, 3, 4]
+  it "inOrder should work for trivial examples" $ do
+    inOrder (Nil :: Tree Int) `shouldBe` []
+    inOrder a `shouldBe` [10, 5, 2]
+    inOrder b `shouldBe` [10]
+    inOrder c `shouldBe` [2]
+    inOrder d `shouldBe` [1, 2, 3, 4, 5]
+  it "postOrder should work for trivial examples" $ do
+    postOrder (Nil :: Tree Int) `shouldBe` []
+    postOrder a `shouldBe` [10, 2, 5]
+    postOrder b `shouldBe` [10]
+    postOrder c `shouldBe` [2]
+    postOrder d `shouldBe` [1, 4, 3, 2, 5]

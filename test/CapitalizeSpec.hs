@@ -4,13 +4,13 @@ import Data.Char (toUpper)
 import Data.List (foldl')
 import Test.Hspec
 
-capitalize :: [Char] -> [String]
+capitalize :: String -> [String]
 capitalize = fmap pToList $ snd . foldl' f ((toUpper, id), ([], []))
   where
     f ((g, h), (xs, ys)) y = ((h, g), (xs ++ [g y], ys ++ [h y]))
     pToList (x, y) = [x, y]
 
-capitalize_v2 :: [Char] -> [String]
+capitalize_v2 :: String -> [String]
 capitalize_v2 xs = [zipWith ($) fs xs, zipWith ($) (tail fs) xs]
   where
     fs = cycle [toUpper, id]
@@ -20,9 +20,10 @@ capitalize_v2 xs = [zipWith ($) fs xs, zipWith ($) (tail fs) xs]
 -- The input will be a lowercase string with no spaces.
 
 spec :: Spec
-spec = do
-  describe "Alternate capitalization" $ do
-    it "should work for simple examples" $ do
+spec =
+  describe "Alternate capitalization"
+    $ it "should work for simple examples"
+    $ do
       capitalize "abcdef" `shouldBe` ["AbCdEf", "aBcDeF"]
       capitalize "codewars" `shouldBe` ["CoDeWaRs", "cOdEwArS"]
       capitalize "abracadabra" `shouldBe` ["AbRaCaDaBrA", "aBrAcAdAbRa"]

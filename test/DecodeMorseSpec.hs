@@ -15,10 +15,11 @@ decodeMorse =
       "   "
 
 spec :: Spec
-spec = do
-  describe "decodeMorse" $ do
-    it "should work on the example from the description" $ do
-      decodeMorse ".... . -.--   .--- ..- -.. ." `shouldBe` "HEY JUDE"
+spec =
+  describe "decodeMorse"
+    $ it "should work on the example from the description"
+    $ decodeMorse ".... . -.--   .--- ..- -.. ."
+      `shouldBe` "HEY JUDE"
 
 morseCodes :: Map String String
 morseCodes =

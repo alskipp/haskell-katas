@@ -4,12 +4,13 @@ import Data.Foldable
   ( Foldable,
     foldMap,
   )
+import Data.Maybe (isNothing)
 import Data.Monoid ()
 import Test.Hspec
 import Test.QuickCheck
 
 myToList :: Foldable t => t a -> [a]
-myToList = foldMap (\a -> [a])
+myToList = foldMap (: [])
 
 myMinimum :: (Ord a, Foldable t) => t a -> Maybe a
 myMinimum = getMin . foldMap (Min . Just)
@@ -46,16 +47,15 @@ instance (Ord a) => Monoid (Min a) where
 -- There should be a single use of foldMap in each of the requested functions !
 
 spec :: Spec
-spec = do
-  describe "Testing Foldmap" $ do
-    it "properly implements myToList" $
-      property (\l -> myToList l == (l :: [Int]))
-    it "properly implements myMinimum" $ property $ \l ->
-      let r = myMinimum (l :: [Int])
-       in if null l then r == Nothing else r == Just (minimum l)
-    it "properly implements foldr (and)" $
-      property (\l -> myFoldr (&&) True l == and (l :: [Bool]))
-    it "properly implements foldr (sum)" $
-      property (\l -> myFoldr (+) 0 l == sum (l :: [Int]))
-    it "properly implements foldr (++)" $
-      property (\l -> myFoldr (++) [] l == concat (l :: [[Int]]))
+spec = describe "Testing Foldmap" $ do
+  it "properly implements myToList" $
+    property (\l -> myToList l == (l :: [Int]))
+  it "properly implements myMinimum" $ property $ \l ->
+    let r = myMinimum (l :: [Int])
+     in if null l then isNothing r else r == Just (minimum l)
+  it "properly implements foldr (and)" $
+    property (\l -> myFoldr (&&) True l == and (l :: [Bool]))
+  it "properly implements foldr (sum)" $
+    property (\l -> myFoldr (+) 0 l == sum (l :: [Int]))
+  it "properly implements foldr (++)" $
+    property (\l -> myFoldr (++) [] l == concat (l :: [[Int]]))

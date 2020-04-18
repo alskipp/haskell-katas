@@ -12,7 +12,7 @@ encode xs = maybe ([], 0) (bwt,) . elemIndex xs $ matrix
   where
     matrix = sort . take len $ iterate rotateR xs
     bwt = fmap last matrix
-    rotateR ys = take len . drop (len - 1) . cycle $ ys
+    rotateR = take len . drop (len - 1) . cycle
     len = length xs
 
 -- | Get back the input from a Burrows-Wheeler-Transformation.

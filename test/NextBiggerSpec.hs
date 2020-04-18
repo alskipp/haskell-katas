@@ -1,5 +1,6 @@
 module NextBiggerSpec where
 
+import Control.Applicative ((<$>))
 import Data.Foldable
   ( foldMap,
     foldl',
@@ -14,10 +15,10 @@ import Data.Sequence
 import Test.Hspec
 
 nextBigger :: Int -> Maybe Int
-nextBigger n = (fmap (fromDigits . getFirst) . foldMap f . S.reverse) $ zipped
+nextBigger n = (fmap (fromDigits . getFirst) . foldMap f . S.reverse) zipped
   where
     zipped = let ds = toDigits n in S.zip (S.inits ds) (S.tails ds)
-    f (h, t) = (fmap . fmap) (h ><) $ maybeNext t
+    f (h, t) = fmap (h ><) <$> maybeNext t
 
 maybeNext :: Seq Int -> Maybe (First (Seq Int))
 maybeNext Empty = Nothing
@@ -39,11 +40,10 @@ fromDigits = foldl' ((+) . (* 10)) 0
 -- 2017 ==> 2071
 
 spec :: Spec
-spec = do
-  it "example tests" $ do
-    nextBigger 12 `shouldBe` Just 21
-    nextBigger 513 `shouldBe` Just 531
-    nextBigger 2017 `shouldBe` Just 2071
-    nextBigger 414 `shouldBe` Just 441
-    nextBigger 144 `shouldBe` Just 414
-    nextBigger 1987654321 `shouldBe` Just 2113456789
+spec = it "example tests" $ do
+  nextBigger 12 `shouldBe` Just 21
+  nextBigger 513 `shouldBe` Just 531
+  nextBigger 2017 `shouldBe` Just 2071
+  nextBigger 414 `shouldBe` Just 441
+  nextBigger 144 `shouldBe` Just 414
+  nextBigger 1987654321 `shouldBe` Just 2113456789
