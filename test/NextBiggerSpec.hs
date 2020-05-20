@@ -1,8 +1,7 @@
 module NextBiggerSpec where
 
-import Control.Applicative ((<$>))
 import Data.Foldable
-  ( foldMap,
+  (
     foldl',
   )
 import Data.Semigroup (First (..))

@@ -1,11 +1,6 @@
 module FoldMapSpec where
 
-import Data.Foldable
-  ( Foldable,
-    foldMap,
-  )
 import Data.Maybe (isNothing)
-import Data.Monoid ()
 import Test.Hspec
 import Test.QuickCheck
 

@@ -1,9 +1,7 @@
 module ScrambliesSpec where
 
 import Data.List
-  ( (\\),
-    null,
-  )
+  ( (\\) )
 import Test.Hspec
 
 scramble :: String -> String -> Bool

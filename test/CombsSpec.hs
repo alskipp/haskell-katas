@@ -1,7 +1,7 @@
 module CombsSpec where
 
 import Data.List
-  ( minimum,
+  (
     tails,
   )
 import Data.Maybe (catMaybes)

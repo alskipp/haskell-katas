@@ -8,11 +8,9 @@ copyright:             2020 Al Skipp
 category:              Katas
 build-type:            Simple
 
-common shared-properties
+test-suite katas-test
   default-language:    Haskell2010
-  build-depends:       base == 4.*
-                     , containers
-                     , split
+  type:                exitcode-stdio-1.0
   ghc-options:         -Wall
                        -Wincomplete-uni-patterns
                        -Wincomplete-record-updates
@@ -20,20 +18,13 @@ common shared-properties
                        -Wredundant-constraints
                        -Wpartial-fields
                        -Widentities
-
-executable katas
-  import:              shared-properties
-  main-is:             Main.hs
-  hs-source-dirs:      exe
-
-test-suite spec
-  import:              shared-properties
-  type:                exitcode-stdio-1.0
-  build-depends:       hspec == 2.*
+  build-depends:       base ^>=4.13.0.0
+                     , containers
+                     , split
+                     , hspec == 2.*
                      , QuickCheck == 2.*
   hs-source-dirs:      test
   main-is:             Spec.hs
-  build-tool-depends:  hspec-discover:hspec-discover
   other-modules:       CapitalizeSpec
                      , DescendingOrderSpec
                      , CombsSpec

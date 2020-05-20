@@ -3,7 +3,6 @@ module DecodeMorseBitsSpec where
 import Data.List
   ( dropWhileEnd,
     group,
-    replicate,
   )
 import Data.List.Split
 import Data.Map.Strict
@@ -11,7 +10,6 @@ import Data.Map.Strict
     Map,
   )
 import qualified Data.Map.Strict as Map
-import Data.Maybe (maybe)
 import Data.Semigroup (Min (..))
 import Test.Hspec
 
