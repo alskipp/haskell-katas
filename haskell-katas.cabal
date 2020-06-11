@@ -41,3 +41,4 @@ test-suite katas-test
                      , DecodeMorseSpec
                      , DecodeMorseBitsSpec
                      , PascalsTriangleSpec
+                     , ListFuncsSpec
