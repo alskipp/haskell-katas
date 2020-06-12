@@ -3,6 +3,7 @@ module ListFuncsSpec where
 import Test.Hspec
 import Prelude hiding (elem)
 
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++
 elem :: (Eq a) => a -> [a] -> Bool
 elem _ [] = False
 elem a (x : xs) = a == x || elem a xs
@@ -11,11 +12,13 @@ elem a (x : xs) = a == x || elem a xs
 -- elem :: (Eq a) => a -> [a] -> Bool
 -- elem a = foldr ((||) . (a ==)) False
 
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++
 nub :: (Eq a) => [a] -> [a]
 nub = foldr f []
   where
     f x xs = if elem x xs then xs else x : xs
 
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++
 isAsc :: (Ord a) => [a] -> Bool
 isAsc xs = and $ zipWith (<=) xs (tail xs)
 
@@ -25,6 +28,7 @@ isAsc xs = and $ zipWith (<=) xs (tail xs)
 -- isAsc [_] = True
 -- isAsc (x : y : xs) = x <= y && isAsc (y : xs)
 
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++
 -- A function that determines whether a path from
 -- 1 node to another exists within a directed graph
 hasPath :: [(Int, Int)] -> Int -> Int -> Bool
@@ -40,6 +44,7 @@ hasPath ns a b
       | a == a' = (b' : next, prune)
       | otherwise = (next, p : prune)
 
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++
 spec :: Spec
 spec = describe "List funcs" $ do
   it "elem" $ do
