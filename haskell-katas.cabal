@@ -43,3 +43,4 @@ test-suite katas-test
                      , PascalsTriangleSpec
                      , ListFuncsSpec
                      , FoldFuncsSpec
+                     , BinaryTreeSpec
