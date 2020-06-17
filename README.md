@@ -45,6 +45,10 @@ On first run, the ghc compiler and project dependencies will be installed into t
 
 ## Installing Nix
 
-Very simple if you are not running macOS Catalina, instructions [here](https://nixos.org/nix/)
+Instructions for [Linux and pre macOS Catalina](https://nixos.org/download.html)
 
-Catalina users need to go through a more onerous process, instructions [here](https://github.com/NixOS/nix/issues/2925#issuecomment-539570232)
+For macOS Catalina users the recommended method is [here](https://nixos.org/nix/manual/#sect-macos-installation)
+
+## Other Haskell projects using Nix
+
+[Neuron](https://github.com/srid/neuron)
