@@ -44,3 +44,4 @@ test-suite katas-test
                      , ListFuncsSpec
                      , FoldFuncsSpec
                      , BinaryTreeSpec
+                     , EditDistanceSpec
