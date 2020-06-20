@@ -45,3 +45,4 @@ test-suite katas-test
                      , FoldFuncsSpec
                      , BinaryTreeSpec
                      , EditDistanceSpec
+                     , AnagramDistanceSpec
