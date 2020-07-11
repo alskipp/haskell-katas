@@ -16,7 +16,9 @@ Assuming Nix is installed, run `bin/test`, all tests will run and will rerun eac
 
 To start a new kata, add a new file to the `test` directory (the file name must end with `Spec.hs`), also add the file name to the end of `haskell-katas.cabal`.
 
-[Hspec](https://hspec.github.io) is used for testing, so a `spec` function will be needed. Here is a scaffold for a new file:
+[Hspec](https://hspec.github.io) is used for testing, so a `spec` function will be needed.
+<details>
+<summary>Here is a scaffold for a new file:</summary>
 
 ``` haskell
 module WibbleSpec where
@@ -28,19 +30,12 @@ spec = describe "Testy time" $ do
   it "should work" $ do
     pending
 ```
+</details>
 
-To have unit tests run automatically upon file save, run the following in a terminal:
+To have unit tests run automatically upon file save with [ghcid](https://github.com/ndmitchell/ghcid), run the following in a terminal:
 
 ``` sh
 bin/test
-```
-
-Here’s the contents of the shell script, it runs [ghcid](https://github.com/ndmitchell/ghcid) via nix-shell:
-
-``` sh
-#!/usr/bin/env bash
-set -xe
-nix-shell --pure --run "ghcid -c 'cabal repl test:katas-test' -T ':main'"
 ```
 
 On first run, the ghc compiler and project dependencies will be installed into the nix store (subsequent runs will use the binaries in your local nix store).
