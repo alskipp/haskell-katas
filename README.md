@@ -1,5 +1,7 @@
 # Haskell Katas
 
+![Test](https://github.com/alskipp/haskell-katas/workflows/Test/badge.svg)
+
 Some random programming problems in Haskell. All code is in the `test` directory.
 
 This project will hopefully serve as a useful reference to anyone interested in trying out programming problems using Haskell with continuous test feedback.
