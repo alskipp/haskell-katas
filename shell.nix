@@ -1,9 +1,9 @@
 let
   pkgs = import (builtins.fetchTarball {
-    name = "nixos-unstable-2020-05-21";
+    name = "nixos-unstable-2020-07-31";
     url =
-      "https://github.com/NixOS/nixpkgs/archive/9dfcff3a1c98bf4b0b3366fe1e02893e01d48da5.tar.gz";
-    sha256 = "1ayc8pv04f9lgiflqwmkayw53cranb2kb1isiqmlsaydsqvvyhm0";
+      "https://github.com/NixOS/nixpkgs/archive/7a1dfb5b3d0a6c750e17ad9ff0a2c182e63d0ef6.tar.gz";
+    sha256 = "sha256:1dvj48zw175n739qvapgcfj3abb3klzppx5md9ypd4ahqkcr3ww0";
   }) { };
 
 in pkgs.haskellPackages.developPackage {
