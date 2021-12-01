@@ -2,7 +2,7 @@
 
 module BurrowsWheelerTransformSpec where
 
-import Data.List
+import Data.List (elemIndex, sort)
 import Test.Hspec
 
 -- | Encode an input sequence with the Burrows-Wheeler-Transformation.

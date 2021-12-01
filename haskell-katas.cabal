@@ -4,7 +4,7 @@ name:                  katas
 version:               0.1.0.0
 author:                Al Skipp
 maintainer:            al_skipp@fastmail.fm
-copyright:             2020 Al Skipp
+copyright:             2021 Al Skipp
 category:              Katas
 build-type:            Simple
 
@@ -18,11 +18,11 @@ test-suite katas-test
                        -Wredundant-constraints
                        -Wpartial-fields
                        -Widentities
-  build-depends:       base ^>=4.13.0.0
+  build-depends:       base
                      , containers
                      , split
-                     , hspec == 2.*
-                     , QuickCheck == 2.*
+                     , hspec
+                     , QuickCheck
   hs-source-dirs:      test
   main-is:             Spec.hs
   other-modules:       CapitalizeSpec
